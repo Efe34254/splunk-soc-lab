@@ -1,0 +1,3 @@
+index=sysmon EventCode=1 Image="*powershell.exe*"
+| table _time, User, Image, CommandLine, ParentImage
+| sort - _time

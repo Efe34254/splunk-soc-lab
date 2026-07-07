@@ -1,0 +1,3 @@
+index=sysmon EventCode=3
+| stats count by DestinationIp, DestinationPort, Image, User
+| sort - count
