@@ -1,3 +1,4 @@
 index=* EventCode=1 Image="*powershell.exe*"
+(CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*" OR CommandLine="*IEX*" OR CommandLine="*DownloadString*" OR CommandLine="*FromBase64String*" OR CommandLine="*bypass*")
 | table _time ComputerName User Image CommandLine ParentImage ParentCommandLine
 | sort - _time
