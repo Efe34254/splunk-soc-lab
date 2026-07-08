@@ -53,6 +53,22 @@ splunk-soc-lab/
 
 ## Example SPL Queries
 
+
+## Lab Evidence
+
+This lab was built on a Windows 10 virtual machine using Splunk Enterprise and Sysmon.
+
+Evidence collected:
+- Splunk successfully indexed Windows Sysmon Operational logs.
+- `index=*` returned over 7,000 events from the lab environment.
+- Sysmon-related searches returned over 6,000 events.
+- Process Create activity was identified using Sysmon Event ID 1.
+
+Screenshots:
+- `screenshots/splunk-all-events.png`
+- `screenshots/splunk-sysmon-events.png`
+- `screenshots/splunk-process-create-events.png`
+
 See the `spl-queries/` folder.
 
 ## Notes
