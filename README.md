@@ -21,8 +21,7 @@ The goal of this lab is to collect Windows security and Sysmon logs, search them
 |---|---|
 | Windows 10 VM | Endpoint generating logs |
 | Sysmon | Enhanced endpoint telemetry |
-| Splunk Enterprise / Free | SIEM for log ingestion and searching |
-| Splunk Universal Forwarder | Forward Windows/Sysmon logs to Splunk |
+| Splunk Enterprise | SIEM platform for local log ingestion and searching |
 
 ## Detection Use Cases
 
@@ -31,6 +30,55 @@ The goal of this lab is to collect Windows security and Sysmon logs, search them
 3. Sysmon process creation monitoring
 4. Sysmon network connection monitoring
 5. Brute-force investigation workflow
+
+## Example SPL Queries
+
+Search all indexed events:
+
+```spl
+index=*
+```
+
+Search Sysmon-related events:
+
+```spl
+index=* "Sysmon"
+```
+
+Search Sysmon process creation activity:
+
+```spl
+index=* "Process Create"
+```
+
+Search Sysmon Event ID 1:
+
+```spl
+index=* EventCode=1
+```
+
+Search Sysmon Operational log source:
+
+```spl
+source="WinEventLog:Microsoft-Windows-Sysmon/Operational"
+```
+
+## Lab Evidence
+
+This lab was built on a Windows 10 virtual machine using Splunk Enterprise and Sysmon.
+
+Evidence collected:
+
+- Splunk successfully indexed Windows Sysmon Operational logs.
+- `index=*` returned over 7,000 events from the lab environment.
+- Sysmon-related searches returned over 6,000 events.
+- Process Create activity was identified using Sysmon Event ID 1.
+
+Screenshots:
+
+- `screenshots/splunk-all-events.png`
+- `screenshots/splunk-sysmon-events.png`
+- `screenshots/splunk-process-create-events.png`
 
 ## Repository Structure
 
@@ -49,27 +97,10 @@ splunk-soc-lab/
 ├── dashboards/
 │   └── dashboard-notes.md
 └── screenshots/
+    ├── splunk-all-events.png
+    ├── splunk-sysmon-events.png
+    └── splunk-process-create-events.png
 ```
-
-## Example SPL Queries
-
-
-## Lab Evidence
-
-This lab was built on a Windows 10 virtual machine using Splunk Enterprise and Sysmon.
-
-Evidence collected:
-- Splunk successfully indexed Windows Sysmon Operational logs.
-- `index=*` returned over 7,000 events from the lab environment.
-- Sysmon-related searches returned over 6,000 events.
-- Process Create activity was identified using Sysmon Event ID 1.
-
-Screenshots:
-- `screenshots/splunk-all-events.png`
-- `screenshots/splunk-sysmon-events.png`
-- `screenshots/splunk-process-create-events.png`
-
-See the `spl-queries/` folder.
 
 ## Notes
 
