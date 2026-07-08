@@ -14,6 +14,8 @@ The goal of this lab is to collect Windows security and Sysmon logs, search them
 - Sysmon event analysis
 - Basic threat detection
 - Incident investigation documentation
+- PowerShell process detection
+- Splunk input configuration
 
 ## Lab Environment
 
@@ -22,6 +24,8 @@ The goal of this lab is to collect Windows security and Sysmon logs, search them
 | Windows 10 VM | Endpoint generating logs |
 | Sysmon | Enhanced endpoint telemetry |
 | Splunk Enterprise | SIEM platform for local log ingestion and searching |
+| Windows Event Logs | Native Windows log source |
+| PowerShell | Test process used to generate detectable activity |
 
 ## Detection Use Cases
 
@@ -30,6 +34,7 @@ The goal of this lab is to collect Windows security and Sysmon logs, search them
 3. Sysmon process creation monitoring
 4. Sysmon network connection monitoring
 5. Brute-force investigation workflow
+6. Local Windows/Sysmon log ingestion through Splunk inputs configuration
 
 ## Example SPL Queries
 
@@ -63,6 +68,18 @@ Search Sysmon Operational log source:
 source="WinEventLog:Microsoft-Windows-Sysmon/Operational"
 ```
 
+Search PowerShell process creation events:
+
+```spl
+index=* EventCode=1 CommandLine="*powershell*"
+```
+
+Search a specific PowerShell test command:
+
+```spl
+index=* EventCode=1 CommandLine="*SOC-LAB-POWERSHELL-TEST*"
+```
+
 ## Lab Evidence
 
 This lab was built on a Windows 10 virtual machine using Splunk Enterprise and Sysmon.
@@ -73,6 +90,8 @@ Evidence collected:
 - `index=*` returned over 7,000 events from the lab environment.
 - Sysmon-related searches returned over 6,000 events.
 - Process Create activity was identified using Sysmon Event ID 1.
+- A PowerShell test command was executed in the Windows 10 VM and detected in Splunk using Sysmon process creation logs.
+- Local Splunk input configuration was documented through `inputs.conf`.
 
 ## Screenshots
 
@@ -94,6 +113,18 @@ This screenshot shows Sysmon process creation activity, including Event ID 1 / P
 
 ![Process Create Events](screenshots/splunk-process-create-events.png)
 
+### Splunk Inputs Configuration
+
+This screenshot shows the local Splunk input configuration used to collect Windows System logs and Sysmon Operational logs.
+
+![Splunk Inputs Configuration](screenshots/splunk-inputs-config.png)
+
+### PowerShell Command Detection
+
+This screenshot shows a PowerShell command executed in the Windows 10 VM and detected in Splunk through Sysmon Event ID 1 process creation logs.
+
+![PowerShell Command Detection](screenshots/powershell-command-detection.png)
+
 ## Repository Structure
 
 ```text
@@ -113,9 +144,16 @@ splunk-soc-lab/
 └── screenshots/
     ├── splunk-all-events.png
     ├── splunk-sysmon-events.png
-    └── splunk-process-create-events.png
+    ├── splunk-process-create-events.png
+    ├── splunk-inputs-config.png
+    └── powershell-command-detection.png
 ```
 
 ## Notes
 
 This project uses a home lab environment. No real company data, customer data, or sensitive logs are included.
+
+Sensitive lab identifiers such as hostname, computer name, username, and IP addresses were removed or redacted from screenshots where needed.
+This project uses a home lab environment. No real company data, customer data, or sensitive logs are included.
+
+Sensitive lab identifiers such as hostname, computer name, username, and IP addresses were removed or redacted from screenshots where needed.
