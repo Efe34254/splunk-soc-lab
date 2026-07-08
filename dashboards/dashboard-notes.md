@@ -79,6 +79,7 @@ index=* EventCode=4625
 ```
 
 ## Notes
-
+This dashboard is designed for a home SOC lab environment.  
+No real company data, customer data, or sensitive logs are included.
 This dashboard is designed for a home SOC lab environment.  
 No real company data, customer data, or sensitive logs are included.
