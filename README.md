@@ -151,9 +151,8 @@ splunk-soc-lab/
 
 ## Notes
 
-This project uses a home lab environment. No real company data, customer data, or sensitive logs are included.
+## Notes
 
-Sensitive lab identifiers such as hostname, computer name, username, and IP addresses were removed or redacted from screenshots where needed.
 This project uses a home lab environment. No real company data, customer data, or sensitive logs are included.
 
 Sensitive lab identifiers such as hostname, computer name, username, and IP addresses were removed or redacted from screenshots where needed.
