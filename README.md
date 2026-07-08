@@ -74,11 +74,25 @@ Evidence collected:
 - Sysmon-related searches returned over 6,000 events.
 - Process Create activity was identified using Sysmon Event ID 1.
 
-Screenshots:
+## Screenshots
 
-- `screenshots/splunk-all-events.png`
-- `screenshots/splunk-sysmon-events.png`
-- `screenshots/splunk-process-create-events.png`
+### All Indexed Events
+
+This screenshot shows that Splunk successfully indexed events from the lab environment.
+
+![All Indexed Events](screenshots/splunk-all-events.png)
+
+### Sysmon Events
+
+This screenshot shows Sysmon Operational logs collected and searchable in Splunk.
+
+![Sysmon Events](screenshots/splunk-sysmon-events.png)
+
+### Sysmon Process Create Events
+
+This screenshot shows Sysmon process creation activity, including Event ID 1 / Process Create events.
+
+![Process Create Events](screenshots/splunk-process-create-events.png)
 
 ## Repository Structure
 
